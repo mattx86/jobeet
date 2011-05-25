@@ -2,19 +2,21 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # project rules
-job:
-  class: sfDoctrineRouteCollection
-  options: { model: JobeetJob }
-
 job_show_user:
   url:   /job/:company_slug/:location_slug/:id/:position_slug
   class: sfDoctrineRoute
-  options: { model: JobeetJob, type: object }
-  method_for_query: retrieveActiveJob
+  options:
+    model: JobeetJob
+    type: object
+    method_for_query: retrieveActiveJob
   param: { module: job, action: show }
   requirements:
     id: \d+
     sf_method: [get]
+
+job:
+  class: sfDoctrineRouteCollection
+  options: { model: JobeetJob }
 
 # default rules
 homepage:
